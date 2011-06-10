@@ -32,6 +32,7 @@ module EeePub
       :subject,
       :description,
       :rights,
+      :guide,
       :relation
     ].each do |name|
       class_eval <<-DELIM
@@ -119,6 +120,7 @@ module EeePub
         :subject => @subjects,
         :description => @descriptions,
         :rights => @rightss,
+        :guide => @guide,
         :relation => @relations,
         :manifest => @files.map{|file|
           case file
