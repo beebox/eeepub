@@ -120,7 +120,7 @@ module EeePub
         :subject => @subjects,
         :description => @descriptions,
         :rights => @rightss,
-        :guide => @guide,
+        :guide => @guides,
         :relation => @relations,
         :manifest => @files.map{|file|
           case file
