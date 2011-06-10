@@ -97,7 +97,7 @@ module EeePub
             if File.directory?(path)
               zip.add_dir(path)
             else
-              zip.add_file(path, File.dirname(path))
+              zip.add_file(path, path)
             end
           end
         end
