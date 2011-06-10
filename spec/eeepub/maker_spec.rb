@@ -12,7 +12,7 @@ describe "EeePub::Maker" do
       description 'this is epub sample'
       rights 'xxx'
       relation 'xxx'
-      identifier 'http://example.com/book/foo', :scheme => 'URL'
+      identifier 'http://example.com/book/foo', :scheme => 'URL', :id => 'BookId'
       uid 'http://example.com/book/foo'
       ncx_file 'toc.ncx'
       opf_file 'content.opf'
@@ -28,7 +28,7 @@ describe "EeePub::Maker" do
   it { @maker.instance_variable_get(:@creators).should == ['jugyo'] }
   it { @maker.instance_variable_get(:@publishers).should == ['jugyo.org'] }
   it { @maker.instance_variable_get(:@dates).should == ["2010-05-06"] }
-  it { @maker.instance_variable_get(:@identifiers).should == [{:value => 'http://example.com/book/foo', :scheme => 'URL'}] }
+  it { @maker.instance_variable_get(:@identifiers).should == [{:value => 'http://example.com/book/foo', :scheme => 'URL', :id => 'BookId'}] }
   it { @maker.instance_variable_get(:@uid).should == 'http://example.com/book/foo' }
   it { @maker.instance_variable_get(:@ncx_file).should == 'toc.ncx' }
   it { @maker.instance_variable_get(:@opf_file).should == 'content.opf' }
@@ -62,7 +62,7 @@ describe "EeePub::Maker" do
       :relation => ['xxx'],
       :ncx => "toc.ncx",
       :publisher => ["jugyo.org"],
-      :identifier => [{:value => "http://example.com/book/foo", :scheme => "URL"}],
+      :identifier => [{:value => "http://example.com/book/foo", :scheme => "URL", :id => 'BookId'}],
       :manifest => ['foo.html', 'bar.html']
     ) { stub!.save }
     mock(EeePub::OCF).new(

@@ -56,7 +56,10 @@ module EeePub
 
     def identifier(id, options)
       @identifiers ||= []
-      @identifiers << {:value => id, :scheme => options[:scheme]}
+      identifier = {:value => id}
+      identifier[:scheme] = options[:scheme] if options[:scheme]
+      identifier[:id] = options[:id] if options[:id]
+      @identifiers << identifier
     end
 
     # @param [Proc] block the block for initialize
