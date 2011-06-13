@@ -93,7 +93,9 @@ module EeePub
 
       create_epub do
         Zip::Archive.open(output_path, Zip::CREATE | Zip::TRUNC) do |zip|
+          zip.add_file('mimetype', '.')
           Dir.glob('**/*').each do |path|
+            next if path == 'mimetype'
             if File.directory?(path)
               zip.add_dir(path)
             else
@@ -110,7 +112,9 @@ module EeePub
     def render
       create_epub do
         buffer = Zip::Archive.open_buffer(Zip::CREATE) do |zip|
+          zip.add_buffer('mimetype', '.')
           Dir.glob('**/*').each do |path|
+            next if path == 'mimetype'
             if File.directory?(path)
               zip.add_buffer(path, path)
             else
@@ -124,6 +128,7 @@ module EeePub
     end
 
     private
+    
     def create_epub
       FileUtils.chdir(dir) do
         File.open('mimetype', 'w') do |f|

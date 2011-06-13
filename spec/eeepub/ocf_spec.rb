@@ -43,7 +43,26 @@ describe "EeePub::OCF" do
 
   it 'should stream epub' do
     output = @ocf.render
-    output.size.should == 523
     output.is_binary_data?.should be_true
+  end
+  
+  describe "the zipped epub" do
+    before do
+      output_path = File.join('eeepub_test.epub')
+      @ocf.save(output_path)
+      @zip = Zip::Archive.open(output_path)
+    end
+    after do
+      @zip.close
+    end
+    it "should have the mimetype first" do
+      @zip.get_name(0).should == 'mimetype'
+    end
+    it "should have all directories and files" do
+      names = []
+      @zip.num_files.times{|i| names << @zip.get_name(i) }
+      names.should include('META-INF/')
+      names.should include('META-INF/container.xml')      
+    end
   end
 end
