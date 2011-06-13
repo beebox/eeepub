@@ -16,6 +16,7 @@ describe "EeePub::Maker" do
       uid 'http://example.com/book/foo'
       ncx_file 'toc.ncx'
       opf_file 'content.opf'
+      guide({:href => "cover.html", :type => "cover", :title => "Cover"})
       files ['foo.html', 'bar.html']
       nav [
         {:label => '1. foo', :content => 'foo.html'},
@@ -61,6 +62,7 @@ describe "EeePub::Maker" do
       :rights => ['xxx'],
       :relation => ['xxx'],
       :ncx => "toc.ncx",
+      :guide => [{:href => "cover.html", :type => "cover", :title => "Cover"}],
       :publisher => ["jugyo.org"],
       :identifier => [{:value => "http://example.com/book/foo", :scheme => "URL", :id => 'BookId'}],
       :manifest => ['foo.html', 'bar.html']
@@ -89,6 +91,7 @@ describe "EeePub::Maker" do
         uid 'http://example.com/book/foo'
         ncx_file 'toc.ncx'
         opf_file 'content.opf'
+        guide({:href => "cover.html", :type => "cover", :title => "Cover"})
         files [{'foo.html' => 'foo/bar'}, {'bar.html' => 'foo/bar/baz'}]
         nav [
           {:label => '1. foo', :content => 'foo.html'},
@@ -112,6 +115,7 @@ describe "EeePub::Maker" do
         :rights => ['xxx'],
         :relation => ['xxx'],
         :ncx => "toc.ncx",
+        :guide => [{:href => "cover.html", :type => "cover", :title => "Cover"}],
         :publisher => ["jugyo.org"],
         :identifier => [{:value => "http://example.com/book/foo", :scheme => "URL"}],
         :manifest => ["foo/bar/foo.html", "foo/bar/baz/bar.html"]
