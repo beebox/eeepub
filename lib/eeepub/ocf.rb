@@ -132,7 +132,7 @@ module EeePub
     def create_epub
       FileUtils.chdir(dir) do
         File.open('mimetype', 'w') do |f|
-          f << 'application/epub+zip'
+          f.write 'application/epub+zip'
         end
 
         meta_inf = 'META-INF'
