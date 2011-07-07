@@ -92,17 +92,7 @@ module EeePub
       output_path = File.expand_path(output_path)
 
       create_epub do
-        Zip::Archive.open(output_path, Zip::CREATE | Zip::TRUNC) do |zip|
-          zip.add_file('mimetype', 'mimetype')
-          Dir.glob('**/*').each do |path|
-            next if path == 'mimetype'
-            if File.directory?(path)
-              zip.add_dir(path)
-            else
-              zip.add_file(path, path)
-            end
-          end
-        end
+        `epzip . #{output_path}`
       end
     end
     
