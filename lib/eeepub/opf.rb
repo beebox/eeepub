@@ -126,8 +126,8 @@ module EeePub
           href = i[:href]
           media_type = i[:media_type] || guess_media_type(i[:href])
         end
-        {:id => id, :href => href, :media_type => media_type}
-      end
+        {:id => id, :href => href, :media_type => media_type} unless id =~ /^com.apple/
+      end.compact
 
       result += [{:id => 'ncx', :href => ncx, :media_type => 'application/x-dtbncx+xml'}] if ncx
       result

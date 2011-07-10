@@ -204,7 +204,8 @@ describe "EeePub::OPF" do
       @opf.manifest = [
         {:id => 'foo', :href => 'foo.html', :media_type => 'application/xhtml+xml'},
         {:id => 'bar', :href => 'bar.html', :media_type => 'application/xhtml+xml'},
-        {:id => 'picture', :href => 'picture.png', :media_type => 'image/png'}
+        {:id => 'picture', :href => 'picture.png', :media_type => 'image/png'},
+        {:id => 'com.apple.blahblah', :href => 'com.apple.blahblah', :media_type => 'application/xml'}
       ]
     end
 
@@ -223,6 +224,14 @@ describe "EeePub::OPF" do
       manifest[3].attribute('id').value.should == 'ncx'
       manifest[3].attribute('href').value.should == @opf.ncx
       manifest[3].attribute('media-type').value.should == @opf.send(:guess_media_type, @opf.ncx)
+    end
+    
+    it "should exclude apple config files" do
+      doc  = Nokogiri::XML(@opf.to_xml)
+      manifest = doc.at('manifest')
+      manifest.each do |item|
+        item.attribute('id').should != 'com.apple.blahblah'
+      end
     end
   end
 

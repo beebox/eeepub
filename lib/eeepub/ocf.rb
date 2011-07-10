@@ -1,4 +1,5 @@
 require 'zipruby'
+require 'epzip'
 
 module EeePub
   # Class to create OCF
