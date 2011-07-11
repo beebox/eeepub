@@ -16,7 +16,8 @@ describe "EeePub::Maker" do
       uid 'http://example.com/book/foo'
       ncx_file 'toc.ncx'
       opf_file 'content.opf'
-      guide({:href => "cover.html", :type => "cover", :title => "Cover"})
+      cover 'cover.jpg'
+      guide([{:href => "cover.html", :type => "cover", :title => "Cover"}])
       files ['foo.html', 'bar.html']
       nav [
         {:label => '1. foo', :content => 'foo.html'},
@@ -34,6 +35,8 @@ describe "EeePub::Maker" do
   it { @maker.instance_variable_get(:@ncx_file).should == 'toc.ncx' }
   it { @maker.instance_variable_get(:@opf_file).should == 'content.opf' }
   it { @maker.instance_variable_get(:@files).should == ['foo.html', 'bar.html'] }
+  it { @maker.instance_variable_get(:@cover).should == 'cover.jpg' }
+  it { @maker.instance_variable_get(:@guide).should == [{:href => "cover.html", :type => "cover", :title => "Cover"}] }  
   it { 
     @maker.instance_variable_get(:@nav).should == [
         {:label => '1. foo', :content => 'foo.html'},
@@ -62,6 +65,7 @@ describe "EeePub::Maker" do
       :rights => ['xxx'],
       :relation => ['xxx'],
       :ncx => "toc.ncx",
+      :cover => 'cover.jpg',
       :guide => [{:href => "cover.html", :type => "cover", :title => "Cover"}],
       :publisher => ["jugyo.org"],
       :identifier => [{:value => "http://example.com/book/foo", :scheme => "URL", :id => 'BookId'}],
@@ -91,7 +95,8 @@ describe "EeePub::Maker" do
         uid 'http://example.com/book/foo'
         ncx_file 'toc.ncx'
         opf_file 'content.opf'
-        guide({:href => "cover.html", :type => "cover", :title => "Cover"})
+        cover 'cover.jpg'
+        guide([{:href => "cover.html", :type => "cover", :title => "Cover"}])
         files [{'foo.html' => 'foo/bar'}, {'bar.html' => 'foo/bar/baz'}]
         nav [
           {:label => '1. foo', :content => 'foo.html'},
@@ -115,6 +120,7 @@ describe "EeePub::Maker" do
         :rights => ['xxx'],
         :relation => ['xxx'],
         :ncx => "toc.ncx",
+        :cover => 'cover.jpg',
         :guide => [{:href => "cover.html", :type => "cover", :title => "Cover"}],
         :publisher => ["jugyo.org"],
         :identifier => [{:value => "http://example.com/book/foo", :scheme => "URL"}],
