@@ -88,7 +88,7 @@ module EeePub
       when /.*\.svg$/i
         'image/svg+xml'
       when /.*\.tif$/i
-        'image/tif'
+        'image/tiff'
       when /.*\.ncx$/i
         'application/x-dtbncx+xml'
       when /.*\.opf$/i
