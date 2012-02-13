@@ -97,6 +97,8 @@ module EeePub
         'application/x-font-ttf'
       when /.*\.otf$/i
         'font/opentype'
+      when /.*\.(m4v|mp4)$/i
+        'video/mp4'
       end
     end
 
