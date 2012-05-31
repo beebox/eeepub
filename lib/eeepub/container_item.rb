@@ -99,6 +99,8 @@ module EeePub
         'font/opentype'
       when /.*\.(m4v|mp4)$/i
         'video/mp4'
+      when /.*\.m4a$/i
+        'audio/mp4'
       end
     end
 
