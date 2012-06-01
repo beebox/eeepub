@@ -79,7 +79,7 @@ module EeePub
         'application/xml'
       when /.*\.css$/i
         'text/css'
-      when /.*\.(jpeg|jpg)$/
+      when /.*\.(jpeg|jpg)$/i
         'image/jpeg'
       when /.*\.png$/i
         'image/png'
